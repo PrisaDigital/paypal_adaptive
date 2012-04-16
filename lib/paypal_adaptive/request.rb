@@ -87,12 +87,9 @@ module PaypalAdaptive
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
-      if @ssl_cert_file
-        #cert = File.read(@ssl_cert_file)
-        #http.cert = OpenSSL::X509::Certificate.new(cert)
-        #http.key = OpenSSL::PKey::RSA.new(cert)
-        http.ca_file = @ssl_cert_file
-      end
+      #http.cert = OpenSSL::X509::Certificate.new(@ssl_x509_cert_file) unless @ssl_x509_cert_file.nil?
+      #http.key = OpenSSL::PKey::RSA.new(File.read(@ssl_rsa_key_file)) unless @ssl_rsa_key_file.nil?
+      http.ca_file = @ssl_cert_file unless @ssl_cert_file.nil?
       http.ca_path = @ssl_cert_path unless @ssl_cert_path.nil?
 
       begin
